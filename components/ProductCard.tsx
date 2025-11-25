@@ -1,6 +1,6 @@
 import React from 'react';
 import { Product } from '../types';
-import { Plus, ShoppingBag } from 'lucide-react';
+import { Plus } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -9,50 +9,49 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
   return (
-    <div className="group relative bg-white rounded-2xl transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-      {/* Badge */}
-      {product.isNew && (
-        <span className="absolute top-4 left-4 bg-vida-mint text-vida-teal-dark text-[10px] font-bold px-3 py-1 rounded-full z-10 uppercase tracking-wider shadow-sm">
-          New Drop
-        </span>
-      )}
-      {product.isBestSeller && (
-        <span className="absolute top-4 left-4 bg-vida-gold text-yellow-900 text-[10px] font-bold px-3 py-1 rounded-full z-10 uppercase tracking-wider shadow-sm">
-          Best Seller
-        </span>
-      )}
+    <div className="group flex flex-col">
+      {/* Image Area */}
+      <div className="relative aspect-square mb-4 overflow-hidden rounded-xl bg-gray-100 shadow-sm group-hover:shadow-md transition-all duration-500">
+        
+        {/* Badges */}
+        <div className="absolute top-3 left-3 flex flex-col gap-2 z-10">
+          {product.isNew && (
+            <span className="bg-pv-sunny text-gray-900 text-xs font-bold px-3 py-1 rounded-sm shadow-sticker font-hand text-lg">
+              New!
+            </span>
+          )}
+          {product.isBestSeller && (
+            <span className="bg-white text-pv-teal-dark text-xs font-bold px-3 py-1 rounded-sm shadow-sticker font-hand text-lg">
+              Fave
+            </span>
+          )}
+        </div>
 
-      {/* Image Container */}
-      <div className="aspect-square overflow-hidden rounded-2xl bg-gray-100 relative mb-4">
         <img 
           src={product.image} 
           alt={product.name} 
-          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+          className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out"
         />
-        {/* Overlay Button */}
+
+        {/* Quick Add Button */}
         <button 
           onClick={() => onAddToCart(product)}
-          className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm text-gray-900 py-4 font-bold uppercase text-xs tracking-widest translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex items-center justify-center gap-2 hover:bg-vida-teal hover:text-white"
+          className="absolute bottom-3 right-3 w-10 h-10 bg-white text-gray-900 rounded-full shadow-lg flex items-center justify-center hover:bg-pv-teal hover:text-white transition-colors duration-300 translate-y-12 group-hover:translate-y-0 opacity-0 group-hover:opacity-100"
+          title="Quick Add"
         >
-          <ShoppingBag size={14} /> Add To Stack
+          <Plus size={20} />
         </button>
       </div>
 
-      {/* Info */}
-      <div className="px-2 pb-2">
-        <div className="flex justify-between items-start mb-1">
-            <h3 className="text-base font-bold text-gray-800 leading-tight group-hover:text-vida-teal transition-colors">
-            {product.name}
-            </h3>
-            <span className="font-marker text-lg text-gray-900 ml-2">${product.price}</span>
-        </div>
-        <p className="text-xs text-gray-400 mb-2 uppercase tracking-wide font-bold">{product.category}</p>
-        
-        {/* Color Dots */}
-        <div className="flex gap-1.5 mt-2">
-            {[1,2,3].map(i => (
-            <div key={i} className={`w-3 h-3 rounded-full border border-gray-200 ${i === 1 ? 'bg-vida-teal' : i === 2 ? 'bg-vida-gold' : 'bg-vida-coral'}`}></div>
-            ))}
+      {/* Info Area */}
+      <div className="text-center">
+        <h3 className="text-lg font-bold text-gray-800 leading-tight mb-1 group-hover:text-pv-teal transition-colors">
+          {product.name}
+        </h3>
+        <div className="flex items-center justify-center gap-2">
+          <p className="text-xs text-gray-400 font-bold uppercase tracking-wide">{product.category}</p>
+          <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
+          <span className="font-hand text-2xl font-bold text-gray-900">${product.price}</span>
         </div>
       </div>
     </div>

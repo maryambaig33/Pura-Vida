@@ -5,26 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vida Vibe Collective</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Amatic+SC:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
               sans: ['Quicksand', 'sans-serif'],
+              hand: ['Amatic SC', 'cursive'],
               marker: ['Permanent Marker', 'cursive'],
             },
             colors: {
-              'vida-teal': '#4FD1C5',
-              'vida-teal-dark': '#38B2AC',
-              'vida-sand': '#FEFCBF',
-              'vida-coral': '#FC8181',
-              'vida-gold': '#F6E05E',
-              'vida-blue': '#63B3ED',
-              'vida-mint': '#B2F5EA',
+              'pv-teal': '#66CCCC',
+              'pv-teal-dark': '#4FB3B3',
+              'pv-sand': '#FFFDF5',
+              'pv-coral': '#FF8A80',
+              'pv-sunny': '#FFD54F',
+              'pv-blue': '#4FC3F7',
+              'pv-mint': '#B2DFDB',
+              'pv-slate': '#37474F',
             },
-            backgroundImage: {
-              'wave-pattern': "url('https://www.transparenttextures.com/patterns/cubes.png')",
+            boxShadow: {
+              'sticker': '4px 4px 0px 0px rgba(0,0,0,0.15)',
+              'sticker-hover': '6px 6px 0px 0px rgba(0,0,0,0.1)',
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              }
             }
           }
         }
@@ -33,10 +45,10 @@
     <style>
       body {
         font-family: 'Quicksand', sans-serif;
-        background-color: #F7FAFC;
+        background-color: #FFFDF5;
       }
-      .font-marker {
-        font-family: 'Permanent Marker', cursive;
+      .font-hand {
+        font-family: 'Amatic SC', cursive;
       }
       .hide-scrollbar::-webkit-scrollbar {
         display: none;
@@ -50,10 +62,12 @@
 {
   "imports": {
     "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react-dom": "https://aistudiocdn.com/react-dom@^19.2.0",
+    "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.0/client",
     "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0"
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
   }
 }
 </script>

@@ -9,10 +9,10 @@ export const generateVibeReading = async (mood: string): Promise<VibeResponse> =
       model: "gemini-2.5-flash",
       contents: `The user's current mood or vibe is: "${mood}".
       
-      Act as a trendy, bohemian jewelry stylist for a brand like Pura Vida. 
-      1. Write a fun, short "Vibe Reading" (max 2 sentences) that feels like a horoscope or best friend advice.
-      2. Suggest 3 specific colors (e.g. "Sunset Orange", "Ocean Teal") that resonate with this energy.
-      3. Give 1 styling tip for stacking bracelets or rings.
+      Act as a trendy, laid-back jewelry stylist for a beachy brand like Pura Vida.
+      1. Write a super short, fun "Vibe Reading" (max 20 words) that feels like advice from a surfer friend.
+      2. Suggest 3 specific colors (e.g. "Sunset Orange", "Teal", "Sand") that match this mood.
+      3. Give 1 short styling tip (max 10 words).
       `,
       config: {
         responseMimeType: "application/json",
@@ -31,19 +31,19 @@ export const generateVibeReading = async (mood: string): Promise<VibeResponse> =
       }
     });
 
-    if (response.text) {
-      return JSON.parse(response.text) as VibeResponse;
-    }
-    
-    throw new Error("No response text from Gemini");
+    const text = response.text;
+    if (!text) throw new Error("No response text from Gemini");
+
+    // Robust parsing: strip markdown code blocks if present
+    const cleanedText = text.replace(/```json|```/g, '').trim();
+    return JSON.parse(cleanedText) as VibeResponse;
 
   } catch (error) {
     console.error("Error generating vibe:", error);
-    // Fallback in case of error (graceful degradation)
     return {
-      vibeReading: "Your energy is radiating good vibes only today!",
-      suggestedColors: ["Turquoise", "Coral", "Gold"],
-      stylingTip: "Mix metals and woven textures for that effortless beach look."
+      vibeReading: "Your good vibes are contagious today!",
+      suggestedColors: ["Teal", "Coral", "Sunshine"],
+      stylingTip: "Stack 'em high and let them shine."
     };
   }
 };
