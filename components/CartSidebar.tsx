@@ -36,7 +36,7 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items, onRem
           </div>
 
           {/* Progress Bar */}
-          <div className="px-5 py-3 bg-vida-sand">
+          <div className="px-5 py-3 bg-pv-sand">
             <p className="text-xs font-semibold text-center mb-2 text-gray-600">
               {remainingForFreeShip > 0 
                 ? `Add $${remainingForFreeShip.toFixed(2)} for FREE Shipping` 
@@ -44,7 +44,7 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items, onRem
             </p>
             <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
               <div 
-                className="h-full bg-vida-teal transition-all duration-500 rounded-full"
+                className="h-full bg-pv-teal transition-all duration-500 rounded-full"
                 style={{ width: `${Math.min(100, (subtotal / freeShippingThreshold) * 100)}%` }}
               ></div>
             </div>
@@ -56,7 +56,7 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items, onRem
               <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
                 <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center text-3xl">🛍️</div>
                 <p className="text-gray-500 font-medium">Your cart is empty.</p>
-                <button onClick={onClose} className="text-vida-teal font-bold hover:underline">Start Shopping</button>
+                <button onClick={onClose} className="text-pv-teal font-bold hover:underline">Start Shopping</button>
               </div>
             ) : (
               items.map((item) => (
@@ -108,7 +108,7 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, items, onRem
               <p className="text-xs text-gray-400 text-center flex items-center justify-center gap-1">
                 <Lock size={12} /> Secure Checkout by VidaVibe
               </p>
-              <button className="w-full bg-vida-teal hover:bg-vida-teal-dark text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-colors shadow-lg hover:shadow-xl">
+              <button className="w-full bg-pv-teal hover:bg-pv-teal-dark text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-colors shadow-lg hover:shadow-xl">
                 Checkout <ArrowRight size={20} />
               </button>
             </div>

@@ -96,21 +96,21 @@ const App: React.FC = () => {
           </div>
 
           <div className="mt-16 text-center">
-            <button className="text-gray-500 hover:text-vida-teal font-medium flex items-center justify-center mx-auto gap-2 transition-colors">
+            <button className="text-gray-500 hover:text-pv-teal font-medium flex items-center justify-center mx-auto gap-2 transition-colors">
               Load More Products <ArrowDown size={16} />
             </button>
           </div>
         </section>
 
         {/* Banner Section */}
-        <section className="bg-vida-teal py-20 relative overflow-hidden">
+        <section className="bg-pv-teal py-20 relative overflow-hidden">
           <div className="absolute inset-0 opacity-10 pattern-dots"></div>
           <div className="max-w-4xl mx-auto px-4 text-center relative z-10 text-white">
             <h2 className="text-4xl font-bold mb-6">Join the Pure Life Club</h2>
             <p className="text-xl mb-8 opacity-90">
               Get 3 exclusive bracelets delivered to your door every month. Support artisans and save up to 50%.
             </p>
-            <button className="bg-white text-vida-teal font-bold px-10 py-4 rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300">
+            <button className="bg-white text-pv-teal font-bold px-10 py-4 rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300">
               Start Your Subscription
             </button>
           </div>
