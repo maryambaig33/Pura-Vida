@@ -5,21 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vida Vibe Collective</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
               sans: ['Quicksand', 'sans-serif'],
+              marker: ['Permanent Marker', 'cursive'],
             },
             colors: {
               'vida-teal': '#4FD1C5',
               'vida-teal-dark': '#38B2AC',
-              'vida-sand': '#F7FAFC',
+              'vida-sand': '#FEFCBF',
               'vida-coral': '#FC8181',
               'vida-gold': '#F6E05E',
               'vida-blue': '#63B3ED',
+              'vida-mint': '#B2F5EA',
+            },
+            backgroundImage: {
+              'wave-pattern': "url('https://www.transparenttextures.com/patterns/cubes.png')",
             }
           }
         }
@@ -29,6 +34,9 @@
       body {
         font-family: 'Quicksand', sans-serif;
         background-color: #F7FAFC;
+      }
+      .font-marker {
+        font-family: 'Permanent Marker', cursive;
       }
       .hide-scrollbar::-webkit-scrollbar {
         display: none;
@@ -52,5 +60,6 @@
 </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="index.tsx"></script>
   </body>
 </html>

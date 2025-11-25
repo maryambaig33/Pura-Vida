@@ -1,6 +1,6 @@
 import React from 'react';
 import { Product } from '../types';
-import { Plus } from 'lucide-react';
+import { Plus, ShoppingBag } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -9,49 +9,50 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
   return (
-    <div className="group relative bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden">
+    <div className="group relative bg-white rounded-2xl transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
       {/* Badge */}
       {product.isNew && (
-        <span className="absolute top-3 left-3 bg-vida-teal text-white text-xs font-bold px-2 py-1 rounded-full z-10">
-          NEW
+        <span className="absolute top-4 left-4 bg-vida-mint text-vida-teal-dark text-[10px] font-bold px-3 py-1 rounded-full z-10 uppercase tracking-wider shadow-sm">
+          New Drop
         </span>
       )}
       {product.isBestSeller && (
-        <span className="absolute top-3 left-3 bg-vida-coral text-white text-xs font-bold px-2 py-1 rounded-full z-10">
-          BEST SELLER
+        <span className="absolute top-4 left-4 bg-vida-gold text-yellow-900 text-[10px] font-bold px-3 py-1 rounded-full z-10 uppercase tracking-wider shadow-sm">
+          Best Seller
         </span>
       )}
 
       {/* Image Container */}
-      <div className="aspect-square overflow-hidden bg-gray-100 relative">
+      <div className="aspect-square overflow-hidden rounded-2xl bg-gray-100 relative mb-4">
         <img 
           src={product.image} 
           alt={product.name} 
-          className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
+          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
         />
-        {/* Quick Add Overlay */}
+        {/* Overlay Button */}
         <button 
           onClick={() => onAddToCart(product)}
-          className="absolute bottom-4 right-4 bg-white/90 backdrop-blur text-gray-900 p-3 rounded-full shadow-lg translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 hover:bg-vida-teal hover:text-white"
-          aria-label="Add to cart"
+          className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm text-gray-900 py-4 font-bold uppercase text-xs tracking-widest translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex items-center justify-center gap-2 hover:bg-vida-teal hover:text-white"
         >
-          <Plus size={24} />
+          <ShoppingBag size={14} /> Add To Stack
         </button>
       </div>
 
       {/* Info */}
-      <div className="p-4">
-        <p className="text-xs text-gray-500 mb-1">{product.category}</p>
-        <h3 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-vida-teal transition-colors truncate">
-          {product.name}
-        </h3>
-        <div className="flex justify-between items-center">
-          <p className="text-gray-900 font-semibold">${product.price}</p>
-          <div className="flex gap-1">
-             {[1,2,3,4,5].map(i => (
-               <div key={i} className={`w-2 h-2 rounded-full ${i < 5 ? 'bg-vida-gold' : 'bg-gray-200'}`}></div>
-             ))}
-          </div>
+      <div className="px-2 pb-2">
+        <div className="flex justify-between items-start mb-1">
+            <h3 className="text-base font-bold text-gray-800 leading-tight group-hover:text-vida-teal transition-colors">
+            {product.name}
+            </h3>
+            <span className="font-marker text-lg text-gray-900 ml-2">${product.price}</span>
+        </div>
+        <p className="text-xs text-gray-400 mb-2 uppercase tracking-wide font-bold">{product.category}</p>
+        
+        {/* Color Dots */}
+        <div className="flex gap-1.5 mt-2">
+            {[1,2,3].map(i => (
+            <div key={i} className={`w-3 h-3 rounded-full border border-gray-200 ${i === 1 ? 'bg-vida-teal' : i === 2 ? 'bg-vida-gold' : 'bg-vida-coral'}`}></div>
+            ))}
         </div>
       </div>
     </div>

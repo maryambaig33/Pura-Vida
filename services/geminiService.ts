@@ -9,10 +9,10 @@ export const generateVibeReading = async (mood: string): Promise<VibeResponse> =
       model: "gemini-2.5-flash",
       contents: `The user's current mood or vibe is: "${mood}".
       
-      Act as a bohemian jewelry stylist and spiritual guide. 
-      1. Write a short, poetic "Vibe Reading" (max 2 sentences) interpreting this mood.
-      2. Suggest 3 colors that resonate with this energy.
-      3. Give 1 specific styling tip for wearing jewelry with this vibe.
+      Act as a trendy, bohemian jewelry stylist for a brand like Pura Vida. 
+      1. Write a fun, short "Vibe Reading" (max 2 sentences) that feels like a horoscope or best friend advice.
+      2. Suggest 3 specific colors (e.g. "Sunset Orange", "Ocean Teal") that resonate with this energy.
+      3. Give 1 styling tip for stacking bracelets or rings.
       `,
       config: {
         responseMimeType: "application/json",
@@ -41,9 +41,9 @@ export const generateVibeReading = async (mood: string): Promise<VibeResponse> =
     console.error("Error generating vibe:", error);
     // Fallback in case of error (graceful degradation)
     return {
-      vibeReading: "Your energy is unique and flowing like the tides today.",
-      suggestedColors: ["Teal", "Gold", "White"],
-      stylingTip: "Layer light pieces to keep your spirit free."
+      vibeReading: "Your energy is radiating good vibes only today!",
+      suggestedColors: ["Turquoise", "Coral", "Gold"],
+      stylingTip: "Mix metals and woven textures for that effortless beach look."
     };
   }
 };

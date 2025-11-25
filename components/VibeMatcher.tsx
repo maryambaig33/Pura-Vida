@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, Loader2, RefreshCw } from 'lucide-react';
+import { Sparkles, Loader2, RefreshCw, Wand2 } from 'lucide-react';
 import { VIBE_PROMPTS } from '../constants';
 import { generateVibeReading } from '../services/geminiService';
 import { VibeResponse } from '../types';
@@ -24,106 +24,116 @@ const VibeMatcher: React.FC = () => {
   };
 
   return (
-    <section className="py-16 bg-gradient-to-br from-vida-teal/5 to-vida-blue/5">
-      <div className="max-w-5xl mx-auto px-4 text-center">
+    <section className="py-20 bg-white relative overflow-hidden">
+      {/* Background Blobs */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-vida-teal/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-vida-gold/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+
+      <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
         
-        <div className="flex flex-col items-center mb-10">
-          <div className="bg-vida-teal/10 p-3 rounded-full mb-4">
-             <Sparkles className="text-vida-teal w-8 h-8" />
+        <div className="flex flex-col items-center mb-12">
+          <div className="bg-vida-mint p-4 rounded-full mb-6 rotate-[-10deg] shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]">
+             <Wand2 className="text-vida-teal-dark w-8 h-8" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Find Your Vibe</h2>
-          <p className="text-gray-600 max-w-xl">
-            Not sure what to stack? Let our AI stylist read your energy and suggest the perfect palette.
+          <h2 className="text-4xl md:text-5xl font-marker text-gray-900 mb-4">What's Your Vibe?</h2>
+          <p className="text-gray-500 text-lg max-w-xl">
+            Let our AI stylist read your energy and curate your perfect stack.
           </p>
         </div>
 
-        {/* Input Section */}
-        <div className="bg-white p-8 rounded-2xl shadow-xl max-w-3xl mx-auto border border-white/50 backdrop-blur-sm">
+        {/* Card Container */}
+        <div className="bg-white p-8 md:p-12 rounded-[2rem] shadow-xl border border-gray-100 max-w-3xl mx-auto relative overflow-hidden">
+          {/* Decorative Corner */}
+          <div className="absolute top-0 right-0 w-24 h-24 bg-vida-sand rounded-bl-[100px] -mr-10 -mt-10 opacity-50"></div>
+
           {!result ? (
             <>
-              <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">How are you feeling today?</p>
+              <p className="font-bold text-gray-400 uppercase tracking-widest text-xs mb-8">Select Your Mood</p>
               
-              <div className="flex flex-wrap justify-center gap-3 mb-8">
+              <div className="flex flex-wrap justify-center gap-3 mb-10">
                 {VIBE_PROMPTS.map((vibe) => (
                   <button
                     key={vibe}
                     onClick={() => { setSelectedVibe(vibe); handleMatch(vibe); }}
                     disabled={isLoading}
-                    className="px-6 py-2 rounded-full border border-gray-200 hover:border-vida-teal hover:bg-vida-teal/5 hover:text-vida-teal-dark transition-all text-gray-600 text-sm font-medium"
+                    className="px-6 py-3 rounded-full border-2 border-gray-100 hover:border-vida-teal hover:bg-vida-teal hover:text-white transition-all text-gray-600 font-bold text-sm"
                   >
                     {vibe}
                   </button>
                 ))}
               </div>
 
-              <div className="relative">
+              <div className="relative mb-8">
                 <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-gray-200"></div>
+                  <div className="w-full border-t border-gray-100"></div>
                 </div>
-                <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-white text-gray-500">Or type your own</span>
+                <div className="relative flex justify-center text-xs uppercase tracking-widest font-bold">
+                  <span className="px-4 bg-white text-gray-400">Or Describe It</span>
                 </div>
               </div>
 
-              <div className="mt-6 flex max-w-md mx-auto">
+              <div className="flex max-w-md mx-auto relative">
                 <input
                   type="text"
                   value={customVibe}
                   onChange={(e) => setCustomVibe(e.target.value)}
-                  placeholder="e.g. Hiking at sunrise..."
-                  className="flex-1 rounded-l-lg border-gray-300 border p-3 focus:ring-2 focus:ring-vida-teal focus:border-transparent outline-none"
+                  placeholder="e.g. Sipping coconuts in Tulum..."
+                  className="w-full rounded-full border-2 border-gray-200 py-3 pl-6 pr-32 focus:border-vida-teal focus:ring-0 outline-none transition-colors"
                   onKeyDown={(e) => e.key === 'Enter' && customVibe && handleMatch(customVibe)}
                 />
                 <button 
                   onClick={() => customVibe && handleMatch(customVibe)}
                   disabled={isLoading || !customVibe}
-                  className="bg-gray-900 text-white px-6 py-3 rounded-r-lg font-semibold hover:bg-vida-teal transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="absolute right-1 top-1 bottom-1 bg-gray-900 text-white px-6 rounded-full font-bold hover:bg-vida-teal transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                 >
-                  {isLoading ? <Loader2 className="animate-spin" /> : 'Analyze'}
+                  {isLoading ? <Loader2 className="animate-spin w-5 h-5" /> : 'Read Me'}
                 </button>
               </div>
             </>
           ) : (
             <div className="animate-fade-in text-left">
-               <div className="flex justify-between items-start mb-6">
+               <div className="flex justify-between items-start mb-8 border-b border-gray-100 pb-6">
                  <div>
-                    <h3 className="text-xl font-bold text-gray-800">Your Vibe Reading</h3>
-                    <p className="text-sm text-gray-500 mt-1">Based on "{selectedVibe || customVibe}"</p>
+                    <h3 className="text-2xl font-marker text-vida-teal-dark">Your Aura Reading</h3>
+                    <p className="text-sm text-gray-400 font-bold uppercase tracking-wider mt-1">
+                      Matched to: <span className="text-gray-800">"{selectedVibe || customVibe}"</span>
+                    </p>
                  </div>
-                 <button onClick={() => setResult(null)} className="text-gray-400 hover:text-gray-600">
+                 <button onClick={() => setResult(null)} className="p-2 hover:bg-gray-100 rounded-full text-gray-400 hover:text-gray-600 transition-colors">
                     <RefreshCw size={20} />
                  </button>
                </div>
                
-               <div className="bg-indigo-50 p-6 rounded-xl border border-indigo-100 mb-6">
-                 <p className="text-indigo-900 italic text-lg leading-relaxed font-medium">
+               <div className="bg-vida-sand/50 p-6 rounded-xl border border-vida-gold/20 mb-8 relative">
+                 <Sparkles className="absolute top-4 right-4 text-vida-gold w-5 h-5" />
+                 <p className="text-gray-700 italic text-lg leading-relaxed font-medium">
                    "{result.vibeReading}"
                  </p>
                </div>
 
-               <div className="grid md:grid-cols-2 gap-6">
+               <div className="grid md:grid-cols-2 gap-8">
                  <div>
-                   <h4 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3">Color Palette</h4>
-                   <div className="flex gap-3">
+                   <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Your Palette</h4>
+                   <div className="flex gap-4">
                      {result.suggestedColors.map((color, idx) => (
-                       <div key={idx} className="flex flex-col items-center">
+                       <div key={idx} className="group flex flex-col items-center">
                          <div 
-                            className="w-12 h-12 rounded-full shadow-md border-2 border-white"
-                            style={{ backgroundColor: color.toLowerCase().includes('gold') ? '#FFD700' : color.toLowerCase().includes('teal') ? '#4FD1C5' : color }} // Fallback simplistic color logic for demo
+                            className="w-14 h-14 rounded-full shadow-sm border-4 border-white transform group-hover:scale-110 transition-transform duration-300 ring-1 ring-gray-100"
+                            style={{ backgroundColor: color.toLowerCase().includes('gold') ? '#FFD700' : color.toLowerCase().includes('teal') ? '#4FD1C5' : color }} 
                          >
-                            {/* Visual fallback if CSS color name matches, otherwise random color for demo if unknown */}
-                            {!['red','blue','green','yellow','purple','orange','black','white','gold','teal','pink','gray'].some(c => color.toLowerCase().includes(c)) && (
+                            {/* Fallback pattern */}
+                            {!['red','blue','green','yellow','purple','orange','black','white','gold','teal','pink','gray','cyan','magenta'].some(c => color.toLowerCase().includes(c)) && (
                               <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-200 to-gray-400" />
                             )}
                          </div>
-                         <span className="text-xs mt-2 font-medium text-gray-600">{color}</span>
+                         <span className="text-[10px] mt-2 font-bold text-gray-500 uppercase tracking-wider">{color}</span>
                        </div>
                      ))}
                    </div>
                  </div>
                  <div>
-                    <h4 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3">Styling Tip</h4>
-                    <p className="text-gray-700 text-sm leading-relaxed">
+                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Stylist's Note</h4>
+                    <p className="text-gray-600 text-sm leading-relaxed border-l-4 border-vida-teal pl-4">
                       {result.stylingTip}
                     </p>
                  </div>
