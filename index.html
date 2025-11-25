@@ -16,6 +16,7 @@
               marker: ['Permanent Marker', 'cursive'],
             },
             colors: {
+              // Primary Palette
               'pv-teal': '#66CCCC',
               'pv-teal-dark': '#4FB3B3',
               'pv-sand': '#FFFDF5',
@@ -24,6 +25,16 @@
               'pv-blue': '#4FC3F7',
               'pv-mint': '#B2DFDB',
               'pv-slate': '#37474F',
+              
+              // Aliases for component compatibility (fixing mixed naming conventions)
+              'vida-teal': '#66CCCC',
+              'vida-teal-dark': '#4FB3B3',
+              'vida-sand': '#FFFDF5',
+              'vida-coral': '#FF8A80',
+              'vida-sunny': '#FFD54F',
+              'vida-blue': '#4FC3F7',
+              'vida-mint': '#B2DFDB',
+              'vida-slate': '#37474F',
             },
             boxShadow: {
               'sticker': '4px 4px 0px 0px rgba(0,0,0,0.15)',
@@ -31,11 +42,17 @@
             },
             animation: {
               'float': 'float 6s ease-in-out infinite',
+              'spin-slow': 'spin 8s linear infinite',
+              'fade-in': 'fadeIn 0.5s ease-out',
             },
             keyframes: {
               float: {
                 '0%, 100%': { transform: 'translateY(0)' },
                 '50%': { transform: 'translateY(-10px)' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0', transform: 'translateY(10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
               }
             }
           }
@@ -56,6 +73,13 @@
       .hide-scrollbar {
         -ms-overflow-style: none;
         scrollbar-width: none;
+      }
+      .perspective-1000 {
+        perspective: 1000px;
+      }
+      .pattern-dots {
+        background-image: radial-gradient(#ffffff 2px, transparent 2px);
+        background-size: 20px 20px;
       }
     </style>
   <script type="importmap">
